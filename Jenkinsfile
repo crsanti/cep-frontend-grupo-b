@@ -18,7 +18,14 @@ pipeline {
 
     stage('Format check') {
       steps {
-        sh 'npm run format:check'
+        warnError(message: 'La guía de estilo no se ha respetado') {
+          sh 'npm run format:check'
+        }
+        script {
+          if (currentBuild.result == 'UNSTABLE') {
+            currentBuild.description = 'UNSTABLE: Format Check'
+          }
+        }
       }
     }
 
