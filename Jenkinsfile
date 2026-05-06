@@ -46,6 +46,14 @@ pipeline {
         sh 'npm run test'
       }
     }
+
+    stage('Build') {
+      steps {
+        sh 'npm run build'
+        sh 'zip -r dist.zip dist'
+        archiveArtifacts(artifacts: 'dist.zip', fingerprint: true)
+      }
+    }
   }
 
   post {
