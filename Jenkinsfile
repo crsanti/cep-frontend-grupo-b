@@ -7,6 +7,7 @@ pipeline {
         sh 'ls -alh'
         sh 'node --version'
         sh 'npm --version'
+        sh 'echo hello world'
       }
     }
   }
